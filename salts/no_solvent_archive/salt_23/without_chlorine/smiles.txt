@@ -1,0 +1,1 @@
+[NH3]CCc1ccc(Br)cc1	salt_23/without_chlorine/init.xyz

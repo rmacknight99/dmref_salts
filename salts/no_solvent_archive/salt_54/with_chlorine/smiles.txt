@@ -1,0 +1,1 @@
+[NH3][C@@H](C)c1ccc2c(c1)cccc2.[Cl]	salt_54/with_chlorine/init.xyz

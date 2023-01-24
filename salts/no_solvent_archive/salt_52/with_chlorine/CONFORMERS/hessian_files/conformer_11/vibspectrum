@@ -1,0 +1,91 @@
+$vibrational spectrum
+#  mode     symmetry     wave number   IR intensity    selection rules
+#                         cm**(-1)      (km*mol⁻¹)       IR     RAMAN
+     1                      -0.00         0.00000        -       - 
+     2                       0.00         0.00000        -       - 
+     3                       0.00         0.00000        -       - 
+     4                       0.00         0.00000        -       - 
+     5                       0.00         0.00000        -       - 
+     6                       0.00         0.00000        -       - 
+     7        a           -141.28       154.02447       YES     YES
+     8        a             13.17         6.38605       YES     YES
+     9        a             28.69         1.88506       YES     YES
+    10        a             56.93        10.34648       YES     YES
+    11        a             79.10        18.93014       YES     YES
+    12        a            120.68        13.28949       YES     YES
+    13        a            153.32         1.26161       YES     YES
+    14        a            172.80         5.29090       YES     YES
+    15        a            204.35        21.75689       YES     YES
+    16        a            230.60         5.33567       YES     YES
+    17        a            255.37         2.40289       YES     YES
+    18        a            304.74        17.61067       YES     YES
+    19        a            356.37         5.55608       YES     YES
+    20        a            389.58         0.94935       YES     YES
+    21        a            426.13         0.47981       YES     YES
+    22        a            433.80         0.99189       YES     YES
+    23        a            462.51         6.01390       YES     YES
+    24        a            496.73         0.20549       YES     YES
+    25        a            519.16         4.25623       YES     YES
+    26        a            543.07         4.64231       YES     YES
+    27        a            579.93         1.42919       YES     YES
+    28        a            627.50         3.02754       YES     YES
+    29        a            711.47        31.51676       YES     YES
+    30        a            715.06         7.71876       YES     YES
+    31        a            758.64         0.96926       YES     YES
+    32        a            775.88         1.34117       YES     YES
+    33        a            804.96        59.66938       YES     YES
+    34        a            820.09        31.55964       YES     YES
+    35        a            857.30         1.15620       YES     YES
+    36        a            867.44         1.33369       YES     YES
+    37        a            879.40         0.07578       YES     YES
+    38        a            907.05         9.57359       YES     YES
+    39        a            913.53         3.12325       YES     YES
+    40        a            915.14         6.27815       YES     YES
+    41        a            921.96         1.21496       YES     YES
+    42        a            932.79         0.25002       YES     YES
+    43        a            971.55        60.13145       YES     YES
+    44        a           1021.07       100.64466       YES     YES
+    45        a           1067.84        23.81138       YES     YES
+    46        a           1080.64        42.84514       YES     YES
+    47        a           1085.99         0.13168       YES     YES
+    48        a           1121.83         3.47365       YES     YES
+    49        a           1137.10         4.10018       YES     YES
+    50        a           1162.85        12.17666       YES     YES
+    51        a           1177.38         2.03025       YES     YES
+    52        a           1189.44        18.36948       YES     YES
+    53        a           1206.65        14.45361       YES     YES
+    54        a           1216.60        42.79277       YES     YES
+    55        a           1226.66        17.66887       YES     YES
+    56        a           1229.66        35.74505       YES     YES
+    57        a           1246.73         4.26869       YES     YES
+    58        a           1303.30         4.52047       YES     YES
+    59        a           1326.69         1.58719       YES     YES
+    60        a           1334.45         5.08184       YES     YES
+    61        a           1361.89        42.66705       YES     YES
+    62        a           1376.11       119.69857       YES     YES
+    63        a           1393.04        67.96847       YES     YES
+    64        a           1407.65         0.50819       YES     YES
+    65        a           1417.96         2.65567       YES     YES
+    66        a           1425.16        75.91633       YES     YES
+    67        a           1442.78        37.22731       YES     YES
+    68        a           1470.01        12.78278       YES     YES
+    69        a           1477.70        12.05307       YES     YES
+    70        a           1518.02        11.43635       YES     YES
+    71        a           1567.51        35.95250       YES     YES
+    72        a           1585.90         3.37533       YES     YES
+    73        a           1610.89         0.45749       YES     YES
+    74        a           2879.72      1960.17092       YES     YES
+    75        a           2933.39        16.10451       YES     YES
+    76        a           2954.49         5.91316       YES     YES
+    77        a           2972.50         5.59698       YES     YES
+    78        a           2981.64         7.83383       YES     YES
+    79        a           3095.23        13.36443       YES     YES
+    80        a           3096.90        16.98096       YES     YES
+    81        a           3105.03        24.51878       YES     YES
+    82        a           3113.53        15.71008       YES     YES
+    83        a           3117.13        66.63719       YES     YES
+    84        a           3122.51         9.27387       YES     YES
+    85        a           3131.00        54.43723       YES     YES
+    86        a           3134.38        93.43993       YES     YES
+    87        a           3185.43        42.34480       YES     YES
+$end
