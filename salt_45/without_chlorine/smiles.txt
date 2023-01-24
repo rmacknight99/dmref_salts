@@ -1,1 +1,0 @@
-[NH3]CCCCCCCCCCCC	salt_45/without_chlorine/init.xyz
