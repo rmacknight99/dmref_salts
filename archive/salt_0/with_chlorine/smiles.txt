@@ -1,0 +1,1 @@
+OCCC[NH3].[Cl]	salt_with_chlorine_0/init.xyz

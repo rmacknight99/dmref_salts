@@ -1,0 +1,1 @@
+[NH3]CCOc1cccc2ccccc12	salt_without_chlorine_52/init.xyz

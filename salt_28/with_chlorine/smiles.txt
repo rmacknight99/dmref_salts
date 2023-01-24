@@ -1,0 +1,1 @@
+[NH3]CCc1ccc(c2cccs2)s1.[Cl]	salt_28/with_chlorine/init.xyz

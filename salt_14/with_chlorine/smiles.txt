@@ -1,0 +1,1 @@
+[NH3]CC1CCCCC1.[Cl]	salt_14/with_chlorine/init.xyz

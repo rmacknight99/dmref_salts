@@ -1,0 +1,1 @@
+[NH3]CCc1ccc(/C=C/c2cc(F)ccc2)cc1.[Cl]	salt_with_chlorine_21/init.xyz

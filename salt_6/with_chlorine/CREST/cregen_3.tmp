@@ -1,0 +1,36 @@
+ input  file name : crest_rotamers_2.xyz
+ output file name : crest_rotamers_3.xyz
+ number of atoms                :   22
+ number of points on xyz files  :   33
+ RMSD threshold                 :   0.1250
+ Bconst threshold               :   0.0100
+ population threshold           :   0.0500
+ conformer energy window  /kcal :   6.0000
+ # fragment in coord            :     2
+ # bonds in reference structure :    21
+ number of reliable points      :    33
+ number of removed by energy    :     2
+ number of remaining points     :    31
+ reference state Etot :  -27.434523049999999     
+ number of doubles removed by rot/RMSD         :          20
+ total number unique points considered further :          11
+       Erel/kcal        Etot weight/tot  conformer     set   degen     origin
+       1   0.000   -27.43452    0.17732    0.17732       1       1     mtd12
+       2   0.058   -27.43443    0.16069    0.31387       2       2     mtd12
+       3   0.087   -27.43438    0.15319                                input
+       4   0.157   -27.43427    0.13602    0.13602       3       1     mtd12
+       5   0.218   -27.43418    0.12277    0.12277       4       1     mtd12
+       6   0.288   -27.43406    0.10904    0.10904       5       1     mtd10
+       7   0.895   -27.43310    0.03918    0.03918       6       1     mtd9
+       8   0.966   -27.43298    0.03479    0.10175       7       3     mtd9
+       9   0.984   -27.43295    0.03372                                mtd12
+      10   0.993   -27.43294    0.03324                                mtd12
+      11   5.086   -27.42642    0.00003    0.00003       8       1     mtd9
+T /K                                  :   298.15
+E lowest                              :   -27.43452
+ensemble average energy (kcal)        :    0.237
+ensemble entropy (J/mol K, cal/mol K) :   17.710    4.233
+ensemble free energy (kcal/mol)       :   -1.262
+population of lowest in %             :   17.732
+ number of unique conformers for further calc            8
+ list of relative energies saved as "crest.energies"

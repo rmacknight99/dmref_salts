@@ -1,0 +1,37 @@
+ input  file name : crest_rotamers_2.xyz
+ output file name : crest_rotamers_3.xyz
+ number of atoms                :   22
+ number of points on xyz files  :   40
+ RMSD threshold                 :   0.1250
+ Bconst threshold               :   0.0100
+ population threshold           :   0.0500
+ conformer energy window  /kcal :   6.0000
+ # fragment in coord            :     2
+ # bonds in reference structure :    21
+   => # of C=C bonds :     2
+ number of reliable points      :    40
+ number of removed by energy    :     5
+ number of remaining points     :    35
+ reference state Etot :  -34.239316530000004     
+ number of doubles removed by rot/RMSD         :          24
+ total number unique points considered further :          11
+       Erel/kcal        Etot weight/tot  conformer     set   degen     origin
+       1   0.000   -34.23932    0.38923    0.38923       1       1     mtd2
+       2   0.077   -34.23919    0.34176    0.34176       2       1     mtd7
+       3   0.227   -34.23896    0.26564    0.26564       3       1     mtd4
+       4   3.769   -34.23331    0.00068    0.00130       4       2     mtd10
+       5   3.817   -34.23323    0.00062                                mtd13
+       6   3.878   -34.23314    0.00056    0.00056       5       1     mtd13
+       7   3.937   -34.23304    0.00051    0.00051       6       1     mtd2
+       8   4.018   -34.23291    0.00044    0.00089       7       2     mtd2
+       9   4.019   -34.23291    0.00044                                mtd2
+      10   4.969   -34.23140    0.00009    0.00009       8       1     mtd2
+      11   5.540   -34.23049    0.00003    0.00003       9       1     mtd13
+T /K                                  :   298.15
+E lowest                              :   -34.23932
+ensemble average energy (kcal)        :    0.100
+ensemble entropy (J/mol K, cal/mol K) :    9.246    2.210
+ensemble free energy (kcal/mol)       :   -0.659
+population of lowest in %             :   38.923
+ number of unique conformers for further calc            9
+ list of relative energies saved as "crest.energies"

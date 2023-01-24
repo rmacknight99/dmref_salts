@@ -1,0 +1,1 @@
+[NH3]CCCCI	salt_without_chlorine_46/init.xyz

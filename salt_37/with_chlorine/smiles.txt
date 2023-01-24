@@ -1,0 +1,1 @@
+[NH3]CCCC(=O)O.[Cl]	salt_37/with_chlorine/init.xyz

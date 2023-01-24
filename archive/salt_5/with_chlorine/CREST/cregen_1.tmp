@@ -1,0 +1,36 @@
+ input  file name : crest_rotamers_2.xyz
+ output file name : crest_rotamers_3.xyz
+ number of atoms                :   19
+ number of points on xyz files  :   229
+ RMSD threshold                 :   0.1250
+ Bconst threshold               :   0.0100
+ population threshold           :   0.0500
+ conformer energy window  /kcal :   6.0000
+ # fragment in coord            :     2
+ # bonds in reference structure :    18
+ number of reliable points      :   229
+ number of removed by energy    :   154
+ number of remaining points     :    75
+ reference state Etot :  -24.298887300000001     
+ number of doubles removed by rot/RMSD         :          64
+ total number unique points considered further :          11
+       Erel/kcal        Etot weight/tot  conformer     set   degen     origin
+       1   0.000   -24.29889    0.14669    0.29087       1       2     input
+       2   0.010   -24.29887    0.14418                                mtd2
+       3   0.178   -24.29860    0.10873    0.21435       2       2     mtd2
+       4   0.195   -24.29858    0.10562                                mtd1
+       5   0.260   -24.29847    0.09459    0.18387       3       2     mtd2
+       6   0.295   -24.29842    0.08927                                mtd1
+       7   0.377   -24.29829    0.07770    0.15491       4       2     mtd1
+       8   0.381   -24.29828    0.07721                                mtd2
+       9   0.522   -24.29806    0.06084    0.06084       5       1     mtd2
+      10   0.657   -24.29784    0.04841    0.04841       6       1     mtd3
+      11   0.678   -24.29781    0.04675    0.04675       7       1     mtd2
+T /K                                  :   298.15
+E lowest                              :   -24.29889
+ensemble average energy (kcal)        :    0.246
+ensemble entropy (J/mol K, cal/mol K) :   19.411    4.639
+ensemble free energy (kcal/mol)       :   -1.383
+population of lowest in %             :   29.087
+ number of unique conformers for further calc            7
+ list of relative energies saved as "crest.energies"

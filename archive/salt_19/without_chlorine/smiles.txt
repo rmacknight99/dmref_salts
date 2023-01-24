@@ -1,0 +1,1 @@
+[NH3]CCc1c(F)c(F)c(F)c(F)c1F	salt_without_chlorine_19/init.xyz

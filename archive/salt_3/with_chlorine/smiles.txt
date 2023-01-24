@@ -1,0 +1,1 @@
+[NH3]C1CC1.[Cl]	salt_with_chlorine_3/init.xyz

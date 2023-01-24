@@ -1,0 +1,1 @@
+[NH3]CC(C)C	salt_without_chlorine_7/init.xyz
