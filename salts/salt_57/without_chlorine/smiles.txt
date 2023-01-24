@@ -1,0 +1,1 @@
+[NH3][C@H](C)c1ccccc1	salt_57/without_chlorine/init.xyz

@@ -1,0 +1,1 @@
+[NH3]Cc1ccc(C=C)cc1	salt_10/without_chlorine/init.xyz

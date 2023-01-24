@@ -1,0 +1,36 @@
+ input  file name : crest_rotamers_2.xyz
+ output file name : crest_rotamers_3.xyz
+ number of atoms                :   12
+ number of points on xyz files  :   36
+ RMSD threshold                 :   0.1250
+ Bconst threshold               :   0.0100
+ population threshold           :   0.0500
+ conformer energy window  /kcal :   6.0000
+ # fragment in coord            :     2
+ # bonds in reference structure :    10
+ number of reliable points      :    36
+ number of removed by energy    :     1
+ number of remaining points     :    35
+ reference state Etot :  -15.774948390000000     
+ number of doubles removed by rot/RMSD         :          24
+ total number unique points considered further :          11
+       Erel/kcal        Etot weight/tot  conformer     set   degen     origin
+       1   0.000   -15.77495    0.18886    0.36649       1       2     mtd5
+       2   0.036   -15.77489    0.17763                                mtd2
+       3   0.052   -15.77487    0.17299    0.17299       2       1     mtd2
+       4   0.170   -15.77468    0.14169    0.28241       3       2     mtd8
+       5   0.174   -15.77467    0.14072                                mtd10
+       6   0.260   -15.77453    0.12172    0.12172       4       1     mtd8
+       7   1.348   -15.77280    0.01944    0.05636       5       3     mtd2
+       8   1.378   -15.77275    0.01848                                mtd6
+       9   1.379   -15.77275    0.01844                                mtd2
+      10   5.601   -15.76602    0.00001    0.00001       6       1     mtd6
+      11   5.814   -15.76568    0.00001    0.00001       7       1     mtd2
+T /K                                  :   298.15
+E lowest                              :   -15.77495
+ensemble average energy (kcal)        :    0.173
+ensemble entropy (J/mol K, cal/mol K) :   16.286    3.892
+ensemble free energy (kcal/mol)       :   -1.161
+population of lowest in %             :   36.649
+ number of unique conformers for further calc            7
+ list of relative energies saved as "crest.energies"

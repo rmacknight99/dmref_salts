@@ -1,0 +1,1 @@
+[NH3]CCCc1ccccc1	salt_39/without_chlorine/init.xyz
