@@ -1,1 +1,0 @@
-[NH3]C1CCCC1.[Cl]	salt_5/with_chlorine/init.xyz

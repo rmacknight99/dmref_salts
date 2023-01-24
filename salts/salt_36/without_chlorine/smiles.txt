@@ -1,1 +1,0 @@
-[NH3]CCC=C	salt_36/without_chlorine/init.xyz

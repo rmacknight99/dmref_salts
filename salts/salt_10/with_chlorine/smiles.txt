@@ -1,1 +1,0 @@
-[NH3]Cc1ccc(C=C)cc1.[Cl]	salt_10/with_chlorine/init.xyz
