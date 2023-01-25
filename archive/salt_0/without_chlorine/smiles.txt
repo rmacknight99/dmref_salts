@@ -1,1 +1,0 @@
-OCCC[NH3]	salt_without_chlorine_0/init.xyz

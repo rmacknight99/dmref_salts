@@ -1,1 +1,0 @@
-[NH3]CCc1ccc(c2cc(C)c(c3ccc(c4c(C)ccs4)s3)s2)s1	salt_without_chlorine_26/init.xyz

@@ -1,1 +1,0 @@
-[NH3]CCSC	salt_without_chlorine_53/init.xyz

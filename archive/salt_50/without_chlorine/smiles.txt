@@ -1,1 +1,0 @@
-[NH3]CCOc1c2ccc3cccc4ccc(c2c34)cc1	salt_without_chlorine_50/init.xyz

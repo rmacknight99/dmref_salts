@@ -1,1 +1,0 @@
-[NH3]CCCCN1[C@@H]2[C@@H]([CH][CH]C=C2)c2c1cccc2	salt_without_chlorine_47/init.xyz

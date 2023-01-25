@@ -1,1 +1,0 @@
-[NH3]CCCCO.[Cl]	salt_with_chlorine_48/init.xyz

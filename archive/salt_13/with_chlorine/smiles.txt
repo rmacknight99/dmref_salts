@@ -1,1 +1,0 @@
-[NH3]C[C@@H]1CC[C@@H](C(=O)O)CC1.[Cl]	salt_with_chlorine_13/init.xyz
