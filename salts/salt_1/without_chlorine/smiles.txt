@@ -1,0 +1,1 @@
+[NH3]C/C=C/c1ccccc1	salt_1/without_chlorine/init.xyz

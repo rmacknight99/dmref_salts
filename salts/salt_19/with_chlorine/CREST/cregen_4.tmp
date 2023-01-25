@@ -1,0 +1,37 @@
+ input  file name : crest_rotamers_2.xyz
+ output file name : crest_rotamers_3.xyz
+ number of atoms                :   22
+ number of points on xyz files  :   50
+ RMSD threshold                 :   0.1250
+ Bconst threshold               :   0.0100
+ population threshold           :   0.0500
+ conformer energy window  /kcal :   6.0000
+ # fragment in coord            :     2
+ # bonds in reference structure :    21
+ number of reliable points      :    50
+ number of removed by energy    :    27
+ number of remaining points     :    23
+ reference state Etot :  -51.849896809999997     
+ number of doubles removed by rot/RMSD         :          11
+ total number unique points considered further :          12
+       Erel/kcal        Etot weight/tot  conformer     set   degen     origin
+       1   0.000   -51.84990    0.14791    0.14791       1       1     input
+       2   0.077   -51.84977    0.12993    0.12993       2       1     mtd6
+       3   0.142   -51.84967    0.11638    0.11638       3       1     mtd5
+       4   0.193   -51.84959    0.10690    0.20646       4       2     mtd5
+       5   0.235   -51.84952    0.09957                                mtd5
+       6   0.287   -51.84944    0.09123    0.09123       5       1     mtd9
+       7   0.403   -51.84926    0.07500    0.14676       6       2     mtd1
+       8   0.429   -51.84921    0.07176                                mtd11
+       9   0.536   -51.84904    0.05991    0.05991       7       1     mtd3
+      10   0.594   -51.84895    0.05434    0.05434       8       1     mtd1
+      11   1.024   -51.84827    0.02631    0.02631       9       1     mtd2
+      12   1.164   -51.84804    0.02077    0.02077      10       1     mtd4
+T /K                                  :   298.15
+E lowest                              :   -51.84990
+ensemble average energy (kcal)        :    0.273
+ensemble entropy (J/mol K, cal/mol K) :   19.719    4.713
+ensemble free energy (kcal/mol)       :   -1.405
+population of lowest in %             :   14.791
+ number of unique conformers for further calc           10
+ list of relative energies saved as "crest.energies"

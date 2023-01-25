@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from morfeus import conformer, Dispersion, read_xyz, XTB, LocalForce, SASA, utils
 from rdkit.Chem import AllChem as Chem
+from xtb.interface import Solvent
 
 def boltz_weight_desc(desc, weights):
 
@@ -28,7 +29,7 @@ def get_dispersion(filename, desc_dict):
     desc_dict["disp_volume"] = disp.volume
     desc_dict["disp_p_int"] = disp.p_int
     desc_dict["disp_p_max"] = disp.p_max
-    desc_dict["dos_p_min"] = disp.p_min
+    desc_dict["disp_p_min"] = disp.p_min
 
     return desc_dict
 
@@ -41,15 +42,15 @@ def get_SASA(filename, desc_dict):
     
     return desc_dict
 
-def get_XTB(filename, desc_dict):
+def get_XTB(filename, desc_dict, charge, unpaired):
 
     elements, coordinates = read_xyz(filename)
-    xtb = XTB(elements, coordinates)
+    xtb = XTB(elements, coordinates, version="2", charge=charge, n_unpaired=unpaired, solvent=Solvent.h2o)
 
     desc_dict["ip"] = xtb.get_ip()
     desc_dict["ea"] = xtb.get_ea()                                                                                                               
-    desc_dict["electrophilicity"] = xtb.get_global_descriptor("electrophilicity", corrected=True)
-    desc_dict["nucleophilicity"] = xtb.get_global_descriptor("nucleophilicity", corrected=True)
+    #desc_dict["e_philicity"] = xtb.get_global_descriptor("electrophilicity", corrected=True)
+    #desc_dict["n_philicity"] = xtb.get_global_descriptor("nucleophilicity", corrected=True)
 
     return desc_dict
 
@@ -65,28 +66,32 @@ def get_LFCs(filename, desc_dict):
     LF.compute_frequencies()
     LF.compute_compliance()
 
-    desc_dict["local_force_constants"] = LF.local_force_constants
-    desc_dict["local_frequencies"] = LF.local_frequencies
+    desc_dict["LFCs"] = LF.local_force_constants
+    desc_dict["LFqCs"] = LF.local_frequencies
 
     return desc_dict, LF
 
 def find_bond(elements, int_coords, search):
 
+    indices = []
     for index, bond in enumerate(int_coords):
         idx_1 = bond.i - 1
         idx_2 = bond.j - 1
         key = elements[idx_1] + "_" + elements[idx_2]
         if key == search:
-            return index
+            indices.append(index)
+    return indices
 
 def resolve_LFCs(filename, desc_dict, LF, search):
 
     elements, coordinates = read_xyz(filename)
-    index = find_bond(elements, LF.internal_coordinates, search)
-    desc_dict["local_force_"+search] = desc_dict["local_force_constants"][index]
-    desc_dict["local_frequencies_"+search] = desc_dict["local_frequencies"][index]
-    desc_dict.pop("local_force_constants")
-    desc_dict.pop("local_frequencies")
+    indices = find_bond(elements, LF.internal_coordinates, search)
+    
+    for i, index in enumerate(indices):
+        desc_dict[f"LFCs_{search}_{i}"] = round(desc_dict["LFCs"][index], 3)
+        desc_dict[f"LFqCs_{search}_{i}"] = round(desc_dict["LFqCs"][index], 3)
+    desc_dict.pop("LFCs")
+    desc_dict.pop("LFqCs")
 
     return desc_dict
 
@@ -109,7 +114,9 @@ def get_ensemble_descriptors(salt_number, withh=True, dispersion=True, SASA=True
             if SASA:
                 desc_dict = get_SASA(filename, desc_dict)
             if XTB:
-                desc_dict = get_XTB(filename, desc_dict)
+                charge = 0 if withh else 1
+                unpaired = 0
+                desc_dict = get_XTB(filename, desc_dict, charge, unpaired)
             if LFCs is not None:
                 desc_dict, LF = get_LFCs(filename, desc_dict)
                 desc_dict = resolve_LFCs(filename, desc_dict, LF, LFCs)
@@ -142,7 +149,7 @@ def gen_hess(salt_number, CORES, withh=True):
                 os.system(f"mkdir -p hessian_files/{name}/")
                 os.system(f"cp {xyz_file} hessian_files/{name}/")
                 os.chdir(f"hessian_files/{name}/")
-                os.system(f"xtb {xyz_file} --hess -c {chrg} -u {uhf} -P {CORES} >/dev/null 2>&1")
+                os.system(f"xtb {xyz_file} --hess --alpb water -c {chrg} -u {uhf} -P {CORES} >/dev/null 2>&1")
                 os.chdir(ROOT)
     os.chdir(HOME)
 
@@ -173,9 +180,7 @@ def make_best_ensemble(salt_number):
         best_ensemble = conformer.ConformerEnsemble(elements=elements)
         best_ensemble.add_conformers([with_dict["best_coords"]], None, None, None)
         best_ensemble.add_conformers([without_dict["best_coords"]], None, None, None)
-    
-    #print(f"\tMean RMSD between crest bests: {best_ensemble.get_rmsd(method='obrms-iter').sum()/(best_ensemble.n_conformers*(best_ensemble.n_conformers-1))}")
-    
+        
     return with_ce, without_ce, best_ensemble
 
 def remove_counterion(ce_elements):
@@ -214,10 +219,11 @@ def run_crest_pipeline(input_file, cores):
     for index, smiles_string in enumerate(smiles):
         print(f"-----On salt #{index}-----")
         with_chlorine = smiles_string
+        n_atoms = len(Chem.AddHs(Chem.MolFromSmiles(with_chlorine)).GetAtoms())
         without_chlorine = smiles_string.split(".")[0]
         print(with_chlorine)
-        pipeline(with_chlorine, f"salt_{index}/with_chlorine", cores, 0, 1)
-        pipeline(without_chlorine, f"salt_{index}/without_chlorine", cores, 1, 1)
+        pipeline(with_chlorine, f"salt_{index}/with_chlorine", cores, n_atoms, 0, 1)
+        pipeline(without_chlorine, f"salt_{index}/without_chlorine", cores, n_atoms, 1, 1)
 
 def get_constraints(ID):
 
@@ -257,7 +263,7 @@ def check_xTB(ID):
         except:
             pass
 
-def pipeline(SMILES, ID, cores, charge, multiplicity=1):
+def pipeline(SMILES, ID, cores, n_atoms, charge, multiplicity=1):
 
     ROOT = os.getcwd()
     CREST_CORES = cores
@@ -268,9 +274,8 @@ def pipeline(SMILES, ID, cores, charge, multiplicity=1):
         print(f"-----Generating Initial XYZ Structure for {SMILES}-----\n", flush=True)
         os.system(f"mkdir -p {ID}")
         os.system(f"obabel -:'{SMILES}' --addhs --gen3d -O {ID}/init.xyz > /dev/null 2>&1")
-
-    # Record the SMILES
-    os.system(f"obabel -ixyz {ID}/init.xyz -osmi -O {ID}/smiles.txt > /dev/null 2>&1")
+        # Record the SMILES
+        os.system(f"obabel -ixyz {ID}/init.xyz -osmi -O {ID}/smiles.txt > /dev/null 2>&1")
 
     # Get the constraints
     constraints = get_constraints(ID)
@@ -282,7 +287,7 @@ def pipeline(SMILES, ID, cores, charge, multiplicity=1):
             os.chdir(ID)
             uhf = multiplicity - 1
             print(f"\tSMILES: {SMILES}\n\tCHARGE: {charge}\n\tUHF: {uhf}\n", flush=True)
-            cmd = f"xtb init.xyz --opt -c {charge} -u {uhf} -P {XTB_CORES} --input xtb.inp > xtb.out"
+            cmd = f"xtb init.xyz --opt -c {charge} -u {uhf} -P {XTB_CORES} --alpb water > xtb.out"
             os.system("mkdir -p XTB")
             shutil.copy("init.xyz", "XTB/init.xyz")
             os.chdir("XTB")
@@ -291,7 +296,7 @@ def pipeline(SMILES, ID, cores, charge, multiplicity=1):
             os.system(cmd)
             os.chdir(ROOT) # always return to root upon completion
         except:
-            os.chdir(ROOT) # always return to root upond completion  
+            os.chdir(ROOT) # always return to root upon completion  
     
     if not os.path.exists(f"{ID}/XTB/xtbopt.xyz"):
         print(f"-----RERUNNING Initial Optimization at GFNFF level of theory-----", flush=True)
@@ -299,14 +304,14 @@ def pipeline(SMILES, ID, cores, charge, multiplicity=1):
             os.chdir(ID)
             uhf = multiplicity - 1
             print(f"\tSMILES: {SMILES}\n\tCHARGE: {charge}\n\tUHF: {uhf}\n", flush=True)
-            cmd = f"xtb init.xyz --opt -c {charge} -u {uhf} -P {XTB_CORES} --gfnff --input xtb.inp > xtb.out"
+            cmd = f"xtb init.xyz --opt -c {charge} -u {uhf} -P {XTB_CORES} --gfnff --alpb water > xtb.out"
             os.system("mkdir -p XTB")
             shutil.copy("init.xyz", "XTB/init.xyz")
             os.chdir("XTB")
             os.system(cmd)
             os.chdir(ROOT) # always return to root upon completion
         except:
-            os.chdir(ROOT) # always return to root upond completion  
+            os.chdir(ROOT) # always return to root upon completion  
     
     # check for xTB errors and move
     check_xTB(ID)
@@ -317,12 +322,15 @@ def pipeline(SMILES, ID, cores, charge, multiplicity=1):
         try:
             os.chdir(ID)
             os.system("mkdir -p CREST")
-            shutil.copy("init.xyz", "CREST/init.xyz")
+            shutil.copy("XTB/xtbopt.xyz", "CREST/xtbopt.xyz")
             os.chdir("CREST")
-            os.system(f"crest init.xyz --gfn2//gfnff --chrg {charge} --uhf {uhf} --cbonds -T {CREST_CORES} --noreftopo > crest.out")
-            os.chdir(ROOT) # always return to root upond completion  
+            if n_atoms > 35:
+                os.system(f"crest xtbopt.xyz --gfn2//gfnff --chrg {charge} --uhf {uhf} --cbonds --alpb water -T {CREST_CORES+64} --quick > crest.out")
+            else:
+                os.system(f"crest xtbopt.xyz --gfn2//gfnff --chrg {charge} --uhf {uhf} --cbonds --alpb water -T {CREST_CORES} > crest.out")
+            os.chdir(ROOT) # always return to root upon completion  
         except:
-            os.chdir(ROOT) # always return to root upond completion
+            os.chdir(ROOT) # always return to root upon completion
 
     # If CREST not converged use GNF2
     if os.path.exists(f"{ID}/CREST/NOT_CONVERGED"):
@@ -330,9 +338,9 @@ def pipeline(SMILES, ID, cores, charge, multiplicity=1):
         try:
             os.chdir(ID)
             os.system("mkdir -p CREST")
-            shutil.copy("init.xyz", "CREST/init.xyz")
+            shutil.copy("XTB/xtbopt.xyz", "CREST/xtbopt.xyz")
             os.chdir("CREST")
-            os.system(f"crest init.xyz --gfn2 --chrg {charge} --uhf {uhf} --cbonds -T {CREST_CORES} --quick --noreftopo > crest.out")
-            os.chdir(ROOT) # always return to root upond completion
+            os.system(f"crest xtbopt.xyz --gfn2 --chrg {charge} --uhf {uhf} --cbonds --alpb water --quick -T {CREST_CORES} > crest.out")
+            os.chdir(ROOT) # always return to root upon completion
         except:
-            os.chdir(ROOT) # always return to root upond completion
+            os.chdir(ROOT) # always return to root upon completion

@@ -1,0 +1,66 @@
+ input  file name : crest_rotamers_2.xyz
+ output file name : crest_rotamers_3.xyz
+ number of atoms                :   22
+ number of points on xyz files  :   417
+ RMSD threshold                 :   0.1250
+ Bconst threshold               :   0.0100
+ population threshold           :   0.0500
+ conformer energy window  /kcal :   6.0000
+ # fragment in coord            :     2
+ # bonds in reference structure :    21
+   => # of C=C bonds :     2
+ number of reliable points      :   417
+ number of removed by energy    :   341
+ number of remaining points     :    76
+ reference state Etot :  -34.795801720000000     
+ number of doubles removed by rot/RMSD         :          36
+ total number unique points considered further :          40
+       Erel/kcal        Etot weight/tot  conformer     set   degen     origin
+       1   0.000   -34.79580    0.20983    0.20983       1       1     mtd10
+       2   0.345   -34.79525    0.11719    0.34062       2       3     mtd10
+       3   0.356   -34.79523    0.11516                                mtd6
+       4   0.392   -34.79518    0.10827                                mtd6
+       5   0.670   -34.79473    0.06781    0.06781       3       1     mtd6
+       6   0.732   -34.79463    0.06102    0.12133       4       2     mtd6
+       7   0.739   -34.79462    0.06030                                mtd1
+       8   0.788   -34.79455    0.05552    0.16418       5       3     mtd10
+       9   0.794   -34.79454    0.05504                                mtd3
+      10   0.809   -34.79451    0.05363                                mtd14
+      11   0.832   -34.79448    0.05155    0.05155       6       1     mtd7
+      12   1.393   -34.79358    0.02003    0.02003       7       1     mtd14
+      13   1.466   -34.79346    0.01770    0.01770       8       1     mtd2
+      14   2.484   -34.79184    0.00318    0.00318       9       1     mtd10
+      15   3.400   -34.79038    0.00068    0.00068      10       1     mtd10
+      16   3.483   -34.79025    0.00059    0.00059      11       1     mtd6
+      17   3.498   -34.79023    0.00058    0.00058      12       1     mtd6
+      18   3.592   -34.79008    0.00049    0.00049      13       1     mtd6
+      19   3.739   -34.78984    0.00038    0.00038      14       1     mtd6
+      20   3.794   -34.78976    0.00035    0.00035      15       1     mtd10
+      21   3.994   -34.78944    0.00025    0.00025      16       1     mtd6
+      22   4.405   -34.78878    0.00012    0.00012      17       1     mtd13
+      23   4.807   -34.78814    0.00006    0.00006      18       1     mtd13
+      24   5.087   -34.78770    0.00004    0.00004      19       1     mtd13
+      25   5.152   -34.78759    0.00004    0.00004      20       1     mtd13
+      26   5.229   -34.78747    0.00003    0.00003      21       1     mtd6
+      27   5.611   -34.78686    0.00002    0.00002      22       1     mtd13
+      28   5.690   -34.78673    0.00001    0.00003      23       2     mtd6
+      29   5.694   -34.78673    0.00001                                mtd6
+      30   5.750   -34.78664    0.00001    0.00001      24       1     mtd2
+      31   5.752   -34.78663    0.00001    0.00001      25       1     mtd6
+      32   5.782   -34.78659    0.00001    0.00001      26       1     mtd2
+      33   5.809   -34.78654    0.00001    0.00002      27       2     mtd2
+      34   5.818   -34.78653    0.00001                                mtd10
+      35   5.870   -34.78645    0.00001    0.00001      28       1     mtd6
+      36   5.952   -34.78632    0.00001    0.00001      29       1     mtd2
+      37   5.970   -34.78629    0.00001    0.00001      30       1     mtd2
+      38   5.979   -34.78627    0.00001    0.00001      31       1     mtd4
+      39   5.984   -34.78627    0.00001    0.00001      32       1     mtd2
+      40   5.988   -34.78626    0.00001    0.00001      33       1     mtd2
+T /K                                  :   298.15
+E lowest                              :   -34.79580
+ensemble average energy (kcal)        :    0.508
+ensemble entropy (J/mol K, cal/mol K) :   20.111    4.807
+ensemble free energy (kcal/mol)       :   -1.433
+population of lowest in %             :   20.983
+ number of unique conformers for further calc           33
+ list of relative energies saved as "crest.energies"
