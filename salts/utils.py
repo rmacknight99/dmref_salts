@@ -4,6 +4,7 @@ import numpy as np
 from morfeus import conformer, Dispersion, read_xyz, XTB, LocalForce, SASA, utils
 from rdkit.Chem import AllChem as Chem
 from xtb.interface import Solvent
+import autode as ade
 
 def boltz_weight_desc(desc, weights):
 
@@ -344,3 +345,30 @@ def pipeline(SMILES, ID, cores, n_atoms, charge, multiplicity=1):
             os.chdir(ROOT) # always return to root upon completion
         except:
             os.chdir(ROOT) # always return to root upon completion
+
+def run_dft(salt_number, CORES, withh=True):
+
+    ade.Config.n_cores = CORES
+    ade.Config.max_core = 8000
+    ade.Config.lcode = "XTB"
+    ade.Config.hcode = "ORCA"
+
+    ade.Config.ORCA.keywords.set_opt_basis_set("def2-TZVP")
+    ade.Config.ORCA.keywords.set_functional("PBE0")
+
+    ROOT = os.getcwd()
+    path = f"salt_{salt_number}/with_chlorine/CONFORMERS/" if withh else f"salt_{salt_number}/without_chlorine/CONFORMERS/"
+    charge = 0 if withh else 1
+    os.chdir(path)
+    cn = 0 
+
+    files = [i for i in os.listdir(".") if i.endswith(".xyz")]
+    n_conformers = len(files)
+    for f in files:
+        print(f"  Optimizing conf {cn+1}/{n_conformers} at DFT level of theory")
+        conf_geom = f
+        conf = ade.Molecule(conf_geom, name=f"salt_{salt_number}_conf_{cn}", charge=charge, mult=1, solvent_name="water")
+        conf.optimise(method=ade.methods.get_hmethod())
+        cn +=1
+
+    os.chdir(ROOT)
