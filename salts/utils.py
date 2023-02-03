@@ -6,6 +6,7 @@ from rdkit.Chem import AllChem as Chem
 from xtb.interface import Solvent
 import autode as ade
 
+
 def boltz_weight_desc(desc, weights):
 
     n_conformers, n_descriptors = len(list(desc)), len(list(desc[0].values()))
@@ -207,7 +208,7 @@ def load_ensemble(path):
         ce_best_elements = remove_counterion(ce_best_elements)
         ce_best_coords = np.delete(ce.get_coordinates()[0], (5), axis=0)
     else:
-        ce_best_coords =ce.get_coordinates()[0]
+        ce_best_coords = ce.get_coordinates()[0]
         ce_best_elements = list(ce_best_elements)
 
     ddict = {"ce": ce, "best_coords": ce_best_coords, "best_degen": None, "best_elements": ce_best_elements, "best_energy": None}
@@ -244,7 +245,7 @@ def get_constraints(ID):
 
     return constrain_indices
 
-def write_xtb_inp(constraints):
+def write_xtb_inp():
 
     with open("xtb.inp", "w") as xtb_inp:
         xtb_inp.write("$fix\n")
@@ -345,6 +346,7 @@ def pipeline(SMILES, ID, cores, n_atoms, charge, multiplicity=1):
             os.chdir(ROOT) # always return to root upon completion
         except:
             os.chdir(ROOT) # always return to root upon completion
+
 
 def run_dft(salt_number, CORES, withh=True):
 
